@@ -14,12 +14,13 @@ HEIGHT = 800
 WIDTH = 1200
 
 FONT = pygame.font.SysFont('Verdana', 20)
-FONT_1 = pygame.font.SysFont('Verdana', 100)
+FONT_1 = pygame.font.SysFont('Comic Sans', 100)
 
 COLOR_WHITE = (255, 255, 255)
 COLOR_BLACK = (0, 0, 0)
 COLOR_BLUE = (0, 0, 255)
 COLOR_ORANGE = (255, 102, 0)
+COLOR_RED = (150, 0, 24)
 
 
 main_display = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -158,14 +159,14 @@ while playing:
         main_display.blit(enemy[0], enemy[1]) # отображение объекта на мониторе
 
         if player_rect.colliderect(enemy[1]):
-            # time.sleep(2)
-            # main_display.blit(FONT_1.render(str("GAME OVER"), True, COLOR_BLACK), (WIDTH-900, 200))
-            # time.sleep(2)
 
             playing = False
-            time.sleep(2)
-            main_display.blit(FONT_1.render(str("GAME OVER"), True, COLOR_BLACK), (WIDTH - 900, 200))
-            # time.sleep(2)
+
+            main_display.blit(FONT_1.render(str("GAME OVER"), True, COLOR_RED), (WIDTH - 900, 200))
+            pygame.display.flip() # забывает обновить кадр
+            pygame.time.delay(2000) # задержка на 2 секунды
+            exit() # прерывает выполниение программы
+
 
     for bonus in bonuses:
         bonus[1] = bonus[1].move(bonus[2])
